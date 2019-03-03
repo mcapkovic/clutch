@@ -1,25 +1,157 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import clutch from "./clutch.svg";
+import clutch2 from "./clutch2.svg";
+import "./App.css";
+
+function calculateMissing(inputAlpha, inputBetha, inputD, inputA) {
+  let alpha;
+  let betha;
+  if(inputAlpha){
+    alpha = inputAlpha;
+    betha = (360 * inputA) / (Math.PI * inputD * Math.tan(inputAlpha * Math.PI/180)) ;
+  }
+  // else if(inputBetha){
+  //   alpha = (360 * inputD * inputBetha * Math.tan(alpha))/360;
+  //   betha = inputBetha;
+  // }
+  return { alpha, betha };
+}
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      alpha: "",
+      betha: "",
+      inputD: "",
+      inputA: "",
+      history: []
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+
+    this.handleCalculateClick = this.handleCalculateClick.bind(this);
+  }
+
+  handleHistoryClick() {
+    document.getElementById("history").classList.toggle("history-open");
+  }
+
+  handleInputChange(event) {
+    let { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  handleCalculateClick() {
+    let {
+      alpha: inputAlpha,
+      betha: inputBetha,
+      inputD,
+      inputA,
+      history
+    } = this.state;
+
+    let { alpha, betha } = calculateMissing(
+      Number(inputAlpha),
+      Number(inputBetha),
+      Number(inputD),
+      Number(inputA),
+    );
+
+    let newHistory = history;
+    newHistory.unshift({ alpha, betha, inputD, inputA });
+    newHistory.length > 5 && newHistory.pop();
+
+    this.setState({
+      alpha,
+      betha,
+      history: newHistory
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+        <label htmlFor="inputD">D - priemer</label>
+        <input
+          className="crt-text-shadow"
+          name="inputD"
+          type="number"
+          autoComplete="off"
+          id="inputD"
+          value={this.state.inputD}
+          onChange={this.handleInputChange}
+        />
+
+        <label htmlFor="inputA">a - zvysla vzdialenost</label>
+        <input
+          className="crt-text-shadow"
+          name="inputA"
+          type="number"
+          autoComplete="off"
+          id="inputA"
+          value={this.state.inputA}
+          onChange={this.handleInputChange}
+        />
+
+        <label htmlFor="alpha">α - uhol rampy</label>
+        <input
+          className="crt-text-shadow"
+          name="alpha"
+          type="number"
+          autoComplete="off"
+          id="alpha"
+          value={this.state.alpha}
+          onChange={this.handleInputChange}
+        />
+
+        <label htmlFor="betha">β - uhol pootocenia</label>
+        <input
+          className="crt-text-shadow"
+          name="betha"
+          type="number"
+          autoComplete="off"
+          id="betha"
+          value={this.state.betha}
+          onChange={this.handleInputChange}
+        />
+
+        <button
+          className="my-button margin-top-small button-effect crt-text-shadow"
+          onClick={this.handleCalculateClick}
+        >
+          Calculate
+        </button>
+
+        <button
+          className="my-button margin-top-small crt-text-shadow"
+          onClick={this.handleHistoryClick}
+        >
+          History
+        </button>
+
+        <img src={clutch2} className="App-logo" alt="logo" />
+        <div className="overlay" id="history">
+          <button
+            className="my-button crt-text-shadow"
+            onClick={this.handleHistoryClick}
           >
-            Learn React
-          </a>
-        </header>
+            History
+          </button>
+          <ul className="crt-text-shadow">
+            {this.state.history.map(calculation => (
+              <li>
+                <ul className="margin-top-small">
+                  <li>{`α: ${calculation.alpha}`}</li>
+                  <li>{`β: ${calculation.betha}`}</li>
+                  <li>{`D: ${calculation.inputD}`}</li>
+                  <li>{`A: ${calculation.inputA}`}</li>
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }

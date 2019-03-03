@@ -1,26 +1,37 @@
+.margin-top-small{
+  margin-top: 0.5em;
+}
+
 .App {
   text-align: center;
+  color: #e5cb37;
+  margin:auto;
+  max-width: 300px;
+  height: 100%;
+  position: relative;
 }
 
 .App-logo {
+  margin-top: 2em;
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  /* height: 40vmin; */
+  height: 6em;
   pointer-events: none;
+  
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #092327;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* font-size: calc(10px + 2vmin); */
 }
 
 .App-link {
-  color: #61dafb;
+  color: #e5cb37;
 }
 
 @keyframes App-logo-spin {
@@ -30,4 +41,109 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* .container {
+  position: relative;
+  height: 100%;
+} */
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #e5cb37;
+  color: #092327;
+  overflow: hidden;
+  width: 100%;
+  height: 0em;
+  transition: .5s ease;
+}
+
+.history-open{
+  height: 100%;
+}
+
+.my-button {
+  padding: 0.2em;
+  position: relative;
+  background-color: #e5cb37;
+  border: none;
+  font-size: 1.5em;
+  color: #092327;
+  width: 100%;
+  text-align: center;
+
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+}
+
+.button-effect{
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button-effect:after {
+  content: "";
+  background: #dfd7ad;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.my-button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+.result-field{
+  border: 2px solid #e5cb37;
+  font-size: 1.5em;
+  padding: 0.2em;
+}
+
+label{
+  display: block;
+  padding-top: 1.3em;
+}
+
+input {
+  color: #e5cb37;
+  font-size: 1.5em;
+  background: #092327;
+  width: 100%;
+  padding: 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #e5cb37;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input:focus {
+  border-bottom: 2px solid #092327;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
