@@ -7,9 +7,11 @@ import "./App.css";
 function calculateMissing(inputAlpha, inputBetha, inputD, inputA) {
   let alpha;
   let betha;
-  if(inputAlpha){
+  if (inputAlpha) {
     alpha = inputAlpha;
-    betha = (360 * inputA) / (Math.PI * inputD * Math.tan(inputAlpha * Math.PI/180)) ;
+    betha =
+      (360 * inputA) /
+      (Math.PI * inputD * Math.tan((inputAlpha * Math.PI) / 180));
   }
   // else if(inputBetha){
   //   alpha = (360 * inputD * inputBetha * Math.tan(alpha))/360;
@@ -38,9 +40,13 @@ class App extends Component {
     document.getElementById("history").classList.toggle("history-open");
   }
 
-  handleInputChange(event) {
+  async handleInputChange(event) {
     let { name, value } = event.target;
-    this.setState({ [name]: value });
+    await this.setState({ [name]: value });
+
+    this.state.inputA
+      ? document.getElementById("bethaInput").classList.add("result-field")
+      : document.getElementById("bethaInput").classList.remove("result-field");
   }
 
   handleCalculateClick() {
@@ -56,7 +62,7 @@ class App extends Component {
       Number(inputAlpha),
       Number(inputBetha),
       Number(inputD),
-      Number(inputA),
+      Number(inputA)
     );
 
     let newHistory = history;
@@ -73,20 +79,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      
         <label htmlFor="inputD">D - priemer</label>
-        <input
-          className="crt-text-shadow"
-          name="inputD"
-          type="number"
-          autoComplete="off"
-          id="inputD"
-          value={this.state.inputD}
-          onChange={this.handleInputChange}
-        />
+        <div className="inputAddOn">
+          <input
+            className="crt-text-shadow input-field"
+            name="inputD"
+            type="number"
+            autoComplete="off"
+            id="inputD"
+            value={this.state.inputD}
+            onChange={this.handleInputChange}
+          />
+          <button class="my-button clear-field-button button-effect">clear</button>
+        </div>
 
         <label htmlFor="inputA">a - zvysla vzdialenost</label>
         <input
-          className="crt-text-shadow"
+          className="crt-text-shadow input-field"
           name="inputA"
           type="number"
           autoComplete="off"
@@ -97,7 +107,7 @@ class App extends Component {
 
         <label htmlFor="alpha">α - uhol rampy</label>
         <input
-          className="crt-text-shadow"
+          className="crt-text-shadow input-field"
           name="alpha"
           type="number"
           autoComplete="off"
@@ -106,13 +116,14 @@ class App extends Component {
           onChange={this.handleInputChange}
         />
 
-        <label htmlFor="betha">β - uhol pootocenia</label>
+        <label htmlFor="bethaInput">β - uhol pootocenia</label>
         <input
-          className="crt-text-shadow"
+          disabled={this.state.inputA}
+          className="crt-text-shadow input-field"
           name="betha"
           type="number"
           autoComplete="off"
-          id="betha"
+          id="bethaInput"
           value={this.state.betha}
           onChange={this.handleInputChange}
         />

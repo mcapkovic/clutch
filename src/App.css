@@ -74,12 +74,31 @@
   color: #092327;
   width: 100%;
   text-align: center;
-
   text-decoration: none;
   overflow: hidden;
   cursor: pointer;
   outline: none;
 }
+
+.my-button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.clear-field-button{
+  margin: 0.5em 0 0.5em 0;
+  background-color: #092327;
+  color: #e5cb37;
+  font-size: 1em;
+}
+
+
+/* .clear-field-button:active{
+  background-color: #e5cb37;
+  color: #092327;
+} */
 
 .button-effect{
   -webkit-transition-duration: 0.4s; /* Safari */
@@ -99,19 +118,6 @@
   transition: all 0.8s
 }
 
-.my-button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-
-.result-field{
-  border: 2px solid #e5cb37;
-  font-size: 1.5em;
-  padding: 0.2em;
-}
-
 label{
   display: block;
   padding-top: 1.3em;
@@ -121,18 +127,32 @@ input {
   color: #e5cb37;
   font-size: 1.5em;
   background: #092327;
-  width: 100%;
+  /* width: 100%; */
   padding: 5px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: none;
-  border-bottom: 2px solid #e5cb37;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
   outline: none;
 }
 
-input:focus {
+/* .inputAddOn{
+  display: flex;
+} */
+
+.input-field{
+  border: 2px solid #092327;
+  border-bottom: 2px solid #e5cb37;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  /* flex: 1; */
+}
+
+.result-field{
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border: 2px solid #e5cb37;
+}
+
+.input-field:focus {
   border-bottom: 2px solid #092327;
 }
 
@@ -140,6 +160,10 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
 }
 
 ul {
