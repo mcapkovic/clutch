@@ -23,15 +23,15 @@ code {
     monospace;
 }
 
-/* .crt {
+.crt {
   animation: textShadow 1.6s infinite;
 }
 
 .crt-text-shadow {
   animation: textShadow 1.6s infinite;
-} */
+}
 
-/* .crt::before {
+.crt::before {
   content: " ";
   display: block;
   position: absolute;
@@ -58,7 +58,7 @@ code {
   z-index: 2;
   pointer-events: none;
   animation: flicker 0.15s infinite;
-} */
+}
 
 @keyframes flicker {
   0% {

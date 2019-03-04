@@ -78,6 +78,7 @@
   overflow: hidden;
   cursor: pointer;
   outline: none;
+  flex: 1;
 }
 
 .my-button:active:after {
@@ -127,23 +128,24 @@ input {
   color: #e5cb37;
   font-size: 1.5em;
   background: #092327;
-  /* width: 100%; */
+  width: 100%;
   padding: 5px;
   margin: 8px 0;
   box-sizing: border-box;
   outline: none;
 }
 
-/* .inputAddOn{
+.inputAddOn{
   display: flex;
-} */
+  /* flex-flow: row wrap; */
+}
 
 .input-field{
   border: 2px solid #092327;
   border-bottom: 2px solid #e5cb37;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  /* flex: 1; */
+  flex: 4;
 }
 
 .result-field{

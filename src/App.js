@@ -82,79 +82,36 @@ class App extends Component {
       <div className="App">
         <InputData
           id="inputD"
+          name="inputD"
           label="D - priemer"
           value={this.state.inputD}
           onChange={this.handleInputChange}
         />
 
-        {/* <label htmlFor="inputD">D - priemer</label>
-        <div className="inputAddOn">
-          <input
-            className="crt-text-shadow input-field"
-            name="inputD"
-            type="number"
-            autoComplete="off"
-            id="inputD"
-            value={this.state.inputD}
-            onChange={this.handleInputChange}
-          />
-          <button class="my-button clear-field-button button-effect">clear</button>
-        </div> */}
-
         <InputData
           id="inputA"
+          name="inputA"
           label="a - zvysla vzdialenost"
           value={this.state.inputA}
           onChange={this.handleInputChange}
         />
 
-        {/* <label htmlFor="inputA">a - zvysla vzdialenost</label>
-        <input
-          className="crt-text-shadow input-field"
-          name="inputA"
-          type="number"
-          autoComplete="off"
-          id="inputA"
-          value={this.state.inputA}
-          onChange={this.handleInputChange}
-        /> */}
-
         <InputData
           id="alpha"
+          name="alpha"
           label="α - uhol rampy"
           value={this.state.alpha}
           onChange={this.handleInputChange}
         />
 
-        {/* <label htmlFor="alpha">α - uhol rampy</label>
-        <input
-          className="crt-text-shadow input-field"
-          name="alpha"
-          type="number"
-          autoComplete="off"
-          id="alpha"
-          value={this.state.alpha}
-          onChange={this.handleInputChange}
-        /> */}
-
         <InputData
           id="bethaInput"
+          name="betha"
           label="β - uhol pootocenia"
           value={this.state.betha}
           onChange={this.handleInputChange}
+          isDisabled={this.state.inputA}
         />
-
-        {/* <label htmlFor="bethaInput">β - uhol pootocenia</label>
-        <input
-          disabled={this.state.inputA}
-          className="crt-text-shadow input-field"
-          name="betha"
-          type="number"
-          autoComplete="off"
-          id="bethaInput"
-          value={this.state.betha}
-          onChange={this.handleInputChange}
-        /> */}
 
         <button
           className="my-button margin-top-small button-effect crt-text-shadow"
