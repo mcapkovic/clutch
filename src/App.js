@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import clutch from "./clutch.svg";
 import clutch2 from "./clutch2.svg";
 import "./App.css";
+import InputData from "./InputData";
 
 function calculateMissing(inputAlpha, inputBetha, inputD, inputA) {
   let alpha;
@@ -79,8 +80,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      
-        <label htmlFor="inputD">D - priemer</label>
+        <InputData
+          id="inputD"
+          label="D - priemer"
+          value={this.state.inputD}
+          onChange={this.handleInputChange}
+        />
+
+        {/* <label htmlFor="inputD">D - priemer</label>
         <div className="inputAddOn">
           <input
             className="crt-text-shadow input-field"
@@ -92,9 +99,16 @@ class App extends Component {
             onChange={this.handleInputChange}
           />
           <button class="my-button clear-field-button button-effect">clear</button>
-        </div>
+        </div> */}
 
-        <label htmlFor="inputA">a - zvysla vzdialenost</label>
+        <InputData
+          id="inputA"
+          label="a - zvysla vzdialenost"
+          value={this.state.inputA}
+          onChange={this.handleInputChange}
+        />
+
+        {/* <label htmlFor="inputA">a - zvysla vzdialenost</label>
         <input
           className="crt-text-shadow input-field"
           name="inputA"
@@ -103,9 +117,16 @@ class App extends Component {
           id="inputA"
           value={this.state.inputA}
           onChange={this.handleInputChange}
+        /> */}
+
+        <InputData
+          id="alpha"
+          label="α - uhol rampy"
+          value={this.state.alpha}
+          onChange={this.handleInputChange}
         />
 
-        <label htmlFor="alpha">α - uhol rampy</label>
+        {/* <label htmlFor="alpha">α - uhol rampy</label>
         <input
           className="crt-text-shadow input-field"
           name="alpha"
@@ -114,9 +135,16 @@ class App extends Component {
           id="alpha"
           value={this.state.alpha}
           onChange={this.handleInputChange}
+        /> */}
+
+        <InputData
+          id="bethaInput"
+          label="β - uhol pootocenia"
+          value={this.state.betha}
+          onChange={this.handleInputChange}
         />
 
-        <label htmlFor="bethaInput">β - uhol pootocenia</label>
+        {/* <label htmlFor="bethaInput">β - uhol pootocenia</label>
         <input
           disabled={this.state.inputA}
           className="crt-text-shadow input-field"
@@ -126,7 +154,7 @@ class App extends Component {
           id="bethaInput"
           value={this.state.betha}
           onChange={this.handleInputChange}
-        />
+        /> */}
 
         <button
           className="my-button margin-top-small button-effect crt-text-shadow"
