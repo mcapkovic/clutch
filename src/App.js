@@ -33,8 +33,8 @@ class App extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-
     this.handleCalculateClick = this.handleCalculateClick.bind(this);
+    this.handleClearClick = this.handleClearClick.bind(this);
   }
 
   handleHistoryClick() {
@@ -48,6 +48,11 @@ class App extends Component {
     this.state.inputA
       ? document.getElementById("bethaInput").classList.add("result-field")
       : document.getElementById("bethaInput").classList.remove("result-field");
+  }
+
+  handleClearClick(event) {
+    event.target.value = '';
+    this.handleInputChange(event);
   }
 
   handleCalculateClick() {
@@ -86,6 +91,7 @@ class App extends Component {
           label="D - priemer"
           value={this.state.inputD}
           onChange={this.handleInputChange}
+          onClearClick={this.handleClearClick}
         />
 
         <InputData
@@ -94,6 +100,7 @@ class App extends Component {
           label="a - zvysla vzdialenost"
           value={this.state.inputA}
           onChange={this.handleInputChange}
+          onClearClick={this.handleClearClick}
         />
 
         <InputData
@@ -102,6 +109,7 @@ class App extends Component {
           label="α - uhol rampy"
           value={this.state.alpha}
           onChange={this.handleInputChange}
+          onClearClick={this.handleClearClick}
         />
 
         <InputData
@@ -110,6 +118,7 @@ class App extends Component {
           label="β - uhol pootocenia"
           value={this.state.betha}
           onChange={this.handleInputChange}
+          onClearClick={this.handleClearClick}
           isDisabled={this.state.inputA}
         />
 
@@ -126,8 +135,10 @@ class App extends Component {
         >
           History
         </button>
+        <div className="margin-top-big center-text">
+          <img src={clutch2} className="App-logo" alt="logo" />
+        </div>
 
-        <img src={clutch2} className="App-logo" alt="logo" />
         <div className="overlay" id="history">
           <button
             className="my-button crt-text-shadow"
@@ -135,7 +146,7 @@ class App extends Component {
           >
             History
           </button>
-          <ul className="crt-text-shadow">
+          <ul className="crt-text-shadow center-text">
             {this.state.history.map(calculation => (
               <li>
                 <ul className="margin-top-small">

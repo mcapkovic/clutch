@@ -6,7 +6,7 @@ function InputData(props) {
       <label htmlFor={props.id}>{props.label}</label>
       <div className="inputAddOn">
         <input
-          className="crt-text-shadow input-field"
+          className="crt-text-shadow input-field flex-big"
           disabled={props.isDisabled}
           name={props.name}
           type="number"
@@ -15,7 +15,11 @@ function InputData(props) {
           value={props.value}
           onChange={props.onChange}
         />
-        <button class="my-button clear-field-button button-effect">
+        <button
+          name={props.name}
+          class="my-button clear-field-button button-effect flex-small"
+          onClick={props.onClearClick}
+        >
           clear
         </button>
       </div>
