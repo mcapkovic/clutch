@@ -1,6 +1,6 @@
 import React from "react";
 
-function InputData(props) {
+function ValueInputField(props) {
   return (
     <div>
       <label htmlFor={props.id}>{props.label}</label>
@@ -17,7 +17,7 @@ function InputData(props) {
         />
         <button
           name={props.name}
-          class="my-button clear-field-button button-effect flex-small"
+          className="my-button clear-field-button button-effect flex-small"
           onClick={props.onClearClick}
         >
           clear
@@ -27,4 +27,4 @@ function InputData(props) {
   );
 }
 
-export default InputData;
+export default ValueInputField;

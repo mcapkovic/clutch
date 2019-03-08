@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import clutch from "./clutch.svg";
-import clutch2 from "./clutch2.svg";
+import clutch2 from "../assets/clutch2.svg";
 import "./App.css";
-import InputData from "./InputData";
+import ValueInputField from "./ValueInputField";
+import HistoryOverlay from "./HistoryOverlay";
 
 function calculateMissing(inputAlpha, inputBetha, inputD, inputA) {
   let alpha;
@@ -19,6 +18,26 @@ function calculateMissing(inputAlpha, inputBetha, inputD, inputA) {
   //   betha = inputBetha;
   // }
   return { alpha, betha };
+}
+
+function findEmptyFields(fieldsArray){
+  console.log(fieldsArray)
+  return fieldsArray.filter(field => field === "").length
+}
+
+function findResultField(alpha, betha, inputA, inputD){
+  
+  !alpha && document.getElementById("alpha").classList.add("result-field");
+  !betha && document.getElementById("bethaInput").classList.add("result-field");
+  !inputA && document.getElementById("inputA").classList.add("result-field");
+  !inputD && document.getElementById("inputD").classList.add("result-field");
+}
+
+function removeResultStyle(){
+  document.getElementById("alpha").classList.remove("result-field");
+  document.getElementById("bethaInput").classList.remove("result-field");
+  document.getElementById("inputA").classList.remove("result-field");
+  document.getElementById("inputD").classList.remove("result-field");
 }
 
 class App extends Component {
@@ -44,10 +63,16 @@ class App extends Component {
   async handleInputChange(event) {
     let { name, value } = event.target;
     await this.setState({ [name]: value });
+    let { alpha, betha, inputA, inputD} = this.state;
 
-    this.state.inputA
-      ? document.getElementById("bethaInput").classList.add("result-field")
-      : document.getElementById("bethaInput").classList.remove("result-field");
+    const emptyFieldsCount = findEmptyFields([alpha, betha, inputA, inputD]);
+    console.log(emptyFieldsCount)
+    emptyFieldsCount === 1 && findResultField(alpha, betha, inputA, inputD);
+    emptyFieldsCount > 1 && removeResultStyle();
+
+    // this.state.inputA
+    //   ? document.getElementById("bethaInput").classList.add("result-field")
+    //   : document.getElementById("bethaInput").classList.remove("result-field");
   }
 
   handleClearClick(event) {
@@ -85,7 +110,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <InputData
+        <ValueInputField
           id="inputD"
           name="inputD"
           label="D - priemer"
@@ -94,7 +119,7 @@ class App extends Component {
           onClearClick={this.handleClearClick}
         />
 
-        <InputData
+        <ValueInputField
           id="inputA"
           name="inputA"
           label="a - zvysla vzdialenost"
@@ -103,7 +128,7 @@ class App extends Component {
           onClearClick={this.handleClearClick}
         />
 
-        <InputData
+        <ValueInputField
           id="alpha"
           name="alpha"
           label="α - uhol rampy"
@@ -112,14 +137,14 @@ class App extends Component {
           onClearClick={this.handleClearClick}
         />
 
-        <InputData
+        <ValueInputField
           id="bethaInput"
           name="betha"
           label="β - uhol pootocenia"
           value={this.state.betha}
           onChange={this.handleInputChange}
           onClearClick={this.handleClearClick}
-          isDisabled={this.state.inputA}
+          // isDisabled={this.state.inputA}
         />
 
         <button
@@ -135,30 +160,17 @@ class App extends Component {
         >
           History
         </button>
+
         <div className="margin-top-big center-text">
           <img src={clutch2} className="App-logo" alt="logo" />
         </div>
 
-        <div className="overlay" id="history">
-          <button
-            className="my-button crt-text-shadow"
-            onClick={this.handleHistoryClick}
-          >
-            History
-          </button>
-          <ul className="crt-text-shadow center-text">
-            {this.state.history.map(calculation => (
-              <li>
-                <ul className="margin-top-small">
-                  <li>{`α: ${calculation.alpha}`}</li>
-                  <li>{`β: ${calculation.betha}`}</li>
-                  <li>{`D: ${calculation.inputD}`}</li>
-                  <li>{`A: ${calculation.inputA}`}</li>
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
+
+        <HistoryOverlay 
+          handleHistoryClick={this.handleHistoryClick}
+          history={this.state.history}
+        />
+
       </div>
     );
   }
